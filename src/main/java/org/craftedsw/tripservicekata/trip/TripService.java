@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TripService {
 
-    private static final ArrayList<Trip> ZERO_TRIPS = new ArrayList<Trip>();
+    private static final ArrayList<Trip> ZERO_TRIPS = new ArrayList<>();
 
     private final TripDAO dao;
 
