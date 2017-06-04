@@ -11,7 +11,7 @@ public class TripService {
 
     private static final ArrayList<Trip> ZERO_TRIPS = new ArrayList<Trip>();
 
-    public List<Trip> getTripsByUser(final User user) throws UserNotLoggedInException {
+    public List<Trip> getFriendTripsFrom(final User user) throws UserNotLoggedInException {
         final User loggedUser = getLoggedUserFromSession();
 		if (isNotLoggedIn(loggedUser)) {
 			throw new UserNotLoggedInException();
