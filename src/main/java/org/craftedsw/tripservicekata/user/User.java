@@ -26,8 +26,8 @@ public class User {
 		return trips;
 	}
 
-	public boolean isFriendOf(final User loggedUser) {
-		return getFriends().contains(loggedUser);
+	public boolean isFriendOf(final User user) {
+		return getFriends().contains(user);
 	}
 
 	public boolean isNotFriendOf(final User user) {
