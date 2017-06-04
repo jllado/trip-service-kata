@@ -13,14 +13,18 @@ public class TripService {
 
     public List<Trip> getFriendTripsFrom(final User user) throws UserNotLoggedInException {
         final User loggedUser = getLoggedUserFromSession();
-		if (isNotLoggedIn(loggedUser)) {
-			throw new UserNotLoggedInException();
-		}
+        validateUserIsLoggedIn(loggedUser);
         if (user.isFriend(loggedUser)) {
 			return findTripsByUser(user);
 		}
 		return ZERO_TRIPS;
 	}
+
+    private void validateUserIsLoggedIn(User loggedUser) {
+        if (isNotLoggedIn(loggedUser)) {
+            throw new UserNotLoggedInException();
+        }
+    }
 
     private boolean isNotLoggedIn(User loggedUser) {
         return loggedUser == null;
