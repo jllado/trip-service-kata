@@ -18,7 +18,7 @@ public class TripService {
 
     public List<Trip> getFriendTripsFrom(final User user, final User userFromSession) throws UserNotLoggedInException {
         validateUserIsLoggedIn(userFromSession);
-        if (user.isFriend(userFromSession)) {
+        if (user.isFriendOf(userFromSession)) {
 			return findTripsBy(user);
 		}
 		return ZERO_TRIPS;
