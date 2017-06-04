@@ -16,7 +16,7 @@ public class TripService {
         this.dao = dao;
     }
 
-    public List<Trip> getFriendTripsFrom(final User user, final User userFromSession) throws UserNotLoggedInException {
+    public List<Trip> getFriendTripsFrom(final User user, final User userFromSession) {
         validateUserIsLoggedIn(userFromSession);
         if (user.isNotFriendOf(userFromSession)) {
             return ZERO_TRIPS;
