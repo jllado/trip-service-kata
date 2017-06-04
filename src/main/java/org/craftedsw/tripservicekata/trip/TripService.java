@@ -19,7 +19,7 @@ public class TripService {
     public List<Trip> getFriendTripsFrom(final User user, User userFromSession) throws UserNotLoggedInException {
         validateUserIsLoggedIn(userFromSession);
         if (user.isFriend(userFromSession)) {
-			return findTripsByUser(user);
+			return findTripsBy(user);
 		}
 		return ZERO_TRIPS;
 	}
@@ -34,7 +34,7 @@ public class TripService {
         return loggedUser == null;
     }
 
-    protected List<Trip> findTripsByUser(final User user) {
+    protected List<Trip> findTripsBy(final User user) {
 		return dao.findTripsBy(user);
 	}
 
