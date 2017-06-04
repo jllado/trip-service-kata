@@ -11,7 +11,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
@@ -35,15 +34,11 @@ public class TripServiceTest {
 
     @Test(expected = UserNotLoggedInException.class)
     public void throw_an_exception_when_not_logged_in_user() throws Exception {
-        doReturn(NOT_LOGGED_IN_USER).when(service).getLoggedUserFromSession();
-
         service.getFriendTripsFrom(ANY_USER, NOT_LOGGED_IN_USER);
     }
 
     @Test
     public void return_zero_trips_when_user_is_not_friend_of_logged_in_user() throws Exception {
-        doReturn(LOGGED_IN_USER).when(service).getLoggedUserFromSession();
-
         assertThat(service.getFriendTripsFrom(USER_WITHOUT_FRIENDS, LOGGED_IN_USER), hasSize(0));
     }
 
@@ -53,7 +48,6 @@ public class TripServiceTest {
         friend.addFriend(LOGGED_IN_USER);
         friend.addTrip(new Trip());
         when(dao.findTripsBy(friend)).thenReturn(friend.trips());
-        doReturn(LOGGED_IN_USER).when(service).getLoggedUserFromSession();
 
         assertThat(service.getFriendTripsFrom(friend, LOGGED_IN_USER), is(friend.trips()));
     }
