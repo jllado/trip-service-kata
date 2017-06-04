@@ -27,12 +27,7 @@ public class TripService {
     }
 
     private boolean isFriend(User user, User loggedUser) {
-        for (User friend : user.getFriends()) {
-            if (friend.equals(loggedUser)) {
-                return true;
-            }
-        }
-        return false;
+        return user.getFriends().contains(loggedUser);
     }
 
     protected List<Trip> findTripsByUser(final User user) {
