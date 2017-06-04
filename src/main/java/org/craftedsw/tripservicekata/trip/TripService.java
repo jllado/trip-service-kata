@@ -11,6 +11,12 @@ public class TripService {
 
     private static final ArrayList<Trip> ZERO_TRIPS = new ArrayList<Trip>();
 
+    private final TripDAO dao;
+
+    public TripService(TripDAO dao) {
+        this.dao = dao;
+    }
+
     public List<Trip> getFriendTripsFrom(final User user) throws UserNotLoggedInException {
         final User loggedUser = getLoggedUserFromSession();
         validateUserIsLoggedIn(loggedUser);
@@ -31,7 +37,7 @@ public class TripService {
     }
 
     protected List<Trip> findTripsByUser(final User user) {
-		return TripDAO.findTripsByUser(user);
+		return dao.findTripsBy(user);
 	}
 
 	protected User getLoggedUserFromSession() {
