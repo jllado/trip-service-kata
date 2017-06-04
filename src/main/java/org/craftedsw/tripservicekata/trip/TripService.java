@@ -9,7 +9,9 @@ import java.util.List;
 
 public class TripService {
 
-	public List<Trip> getTripsByUser(final User user) throws UserNotLoggedInException {
+    private static final ArrayList<Trip> ZERO_TRIPS = new ArrayList<Trip>();
+
+    public List<Trip> getTripsByUser(final User user) throws UserNotLoggedInException {
         final User loggedUser = getLoggedUserFromSession();
 		if (loggedUser == null) {
 			throw new UserNotLoggedInException();
@@ -17,7 +19,7 @@ public class TripService {
         if (isFriend(user, loggedUser)) {
 			return findTripsByUser(user);
 		}
-		return new ArrayList<Trip>();
+		return ZERO_TRIPS;
 	}
 
     private boolean isFriend(User user, User loggedUser) {
