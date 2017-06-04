@@ -11,7 +11,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -29,7 +28,7 @@ public class TripServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        service = spy(new TripService(dao));
+        service = new TripService(dao);
     }
 
     @Test(expected = UserNotLoggedInException.class)
