@@ -7,18 +7,18 @@ import java.util.List;
 
 public class User {
 
-	private List<Trip> trips = new ArrayList<Trip>();
-	private List<User> friends = new ArrayList<User>();
+	private final List<Trip> trips = new ArrayList<Trip>();
+	private final List<User> friends = new ArrayList<User>();
 	
 	public List<User> getFriends() {
 		return friends;
 	}
 	
-	public void addFriend(User user) {
+	public void addFriend(final User user) {
 		friends.add(user);
 	}
 
-	public void addTrip(Trip trip) {
+	public void addTrip(final Trip trip) {
 		trips.add(trip);
 	}
 	
@@ -26,7 +26,7 @@ public class User {
 		return trips;
 	}
 
-	public boolean isFriendOf(User loggedUser) {
+	public boolean isFriendOf(final User loggedUser) {
 		return getFriends().contains(loggedUser);
 	}
 
