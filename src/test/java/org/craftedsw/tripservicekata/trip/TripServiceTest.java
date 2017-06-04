@@ -37,14 +37,14 @@ public class TripServiceTest {
     public void throw_an_exception_when_not_logged_in_user() throws Exception {
         doReturn(NOT_LOGGED_IN_USER).when(service).getLoggedUserFromSession();
 
-        service.getFriendTripsFrom(ANY_USER);
+        service.getFriendTripsFrom(ANY_USER, NOT_LOGGED_IN_USER);
     }
 
     @Test
     public void return_zero_trips_when_user_is_not_friend_of_logged_in_user() throws Exception {
         doReturn(LOGGED_IN_USER).when(service).getLoggedUserFromSession();
 
-        assertThat(service.getFriendTripsFrom(USER_WITHOUT_FRIENDS), hasSize(0));
+        assertThat(service.getFriendTripsFrom(USER_WITHOUT_FRIENDS, LOGGED_IN_USER), hasSize(0));
     }
 
     @Test
@@ -55,7 +55,7 @@ public class TripServiceTest {
         when(dao.findTripsBy(friend)).thenReturn(friend.trips());
         doReturn(LOGGED_IN_USER).when(service).getLoggedUserFromSession();
 
-        assertThat(service.getFriendTripsFrom(friend), is(friend.trips()));
+        assertThat(service.getFriendTripsFrom(friend, LOGGED_IN_USER), is(friend.trips()));
     }
 
 }
