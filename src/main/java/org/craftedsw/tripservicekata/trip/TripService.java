@@ -12,11 +12,11 @@ public class TripService {
 
     private final TripDAO dao;
 
-    public TripService(TripDAO dao) {
+    public TripService(final TripDAO dao) {
         this.dao = dao;
     }
 
-    public List<Trip> getFriendTripsFrom(final User user, User userFromSession) throws UserNotLoggedInException {
+    public List<Trip> getFriendTripsFrom(final User user, final User userFromSession) throws UserNotLoggedInException {
         validateUserIsLoggedIn(userFromSession);
         if (user.isFriend(userFromSession)) {
 			return findTripsBy(user);
@@ -24,13 +24,13 @@ public class TripService {
 		return ZERO_TRIPS;
 	}
 
-    private void validateUserIsLoggedIn(User loggedUser) {
+    private void validateUserIsLoggedIn(final User loggedUser) {
         if (isNotLoggedIn(loggedUser)) {
             throw new UserNotLoggedInException();
         }
     }
 
-    private boolean isNotLoggedIn(User loggedUser) {
+    private boolean isNotLoggedIn(final User loggedUser) {
         return loggedUser == null;
     }
 
