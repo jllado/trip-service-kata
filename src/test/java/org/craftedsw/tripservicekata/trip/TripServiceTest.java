@@ -2,9 +2,9 @@ package org.craftedsw.tripservicekata.trip;
 
 import org.craftedsw.tripservicekata.exception.UserNotLoggedInException;
 import org.craftedsw.tripservicekata.user.User;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -24,12 +24,8 @@ public class TripServiceTest {
     @Mock
     private TripDAO dao;
 
+    @InjectMocks
     private TripService service;
-
-    @Before
-    public void setUp() throws Exception {
-        service = new TripService(dao);
-    }
 
     @Test(expected = UserNotLoggedInException.class)
     public void throw_an_exception_when_not_logged_in_user() throws Exception {
