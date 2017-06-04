@@ -9,6 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.doReturn;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -34,6 +35,17 @@ public class TripServiceTest {
         doReturn(LOGGED_IN_USER).when(service).getLoggedUserFromSession();
 
         assertThat(service.getTripsByUser(USER_WITHOUT_FRIENDS), hasSize(0));
+    }
+
+    @Test
+    public void return_user_trips_when_is_friend_of_logged_in_user() throws Exception {
+        final User friend = new User();
+        friend.addFriend(LOGGED_IN_USER);
+        friend.addTrip(new Trip());
+        doReturn(friend.trips()).when(service).findTripsByUser(friend);
+        doReturn(LOGGED_IN_USER).when(service).getLoggedUserFromSession();
+
+        assertThat(service.getTripsByUser(friend), is(friend.trips()));
     }
 
 }
