@@ -30,4 +30,8 @@ public class User {
 		return getFriends().contains(loggedUser);
 	}
 
+	public boolean isNotFriendOf(final User user) {
+		return !isFriendOf(user);
+	}
+
 }
